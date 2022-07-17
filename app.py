@@ -56,6 +56,10 @@ def jsonify_hacks_list(hacks_list):
 def home():
     return render_template("index.html")
 
+@app.route('/team')
+def team():
+    return render_template("team.html")
+
 @app.route("/months")
 @app.route("/months/")
 def month():
