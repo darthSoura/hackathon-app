@@ -46,18 +46,24 @@
       const baseURL = "/api/months/"
       function loadFromApi(endpoint) {
         const cardsContainer = document.getElementById("cards-container");
-        const cardHtml = (title = "", desc = "") => {
-          return `<div class="card card1">
-          <div class="card-body">
-            <h3 class="card-title">${title}</h3>
-            <p class="card-text small">
-              ${desc}
-            </p>
-            <div class="go-corner">
-              <div class="go-arrow"></div>
+        const cardHtml = (card) => {
+          return `
+          <a href="${card.repo_url}" target="_blank">
+            <div class="card card1">
+              <div class="card-body">
+                <h3 class="card-title">${card.title}</h3>
+                <p class="card-text small">
+                  ${card.desc}
+                </p>
+                <p class="card-text small">
+                  Tech stack: ${card.techstacks.join(", ")}
+                </p>
+                <div class="go-corner">
+                  <div class="go-arrow"></div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>`;
+          </a>`;
         };
         // Clear all old cards
         cardsContainer.innerHTML = "";
@@ -66,10 +72,11 @@
             return response.json();
           })
           .then((data) => {
+            console.log(data)
             if (data.hackathons.length == 0) cardsContainer.innerHTML = "No hackathons found"
             cardsContainer.innerHTML = "";
             data.hackathons.forEach((item) => {
-              cardsContainer.innerHTML += cardHtml(item.title, item.desc);
+              cardsContainer.innerHTML += cardHtml(item);
             });
           });
       }

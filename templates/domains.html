@@ -45,29 +45,37 @@
       const baseURL = "/api/domains/"
       function loadFromApi(endpoint) {
         const cardsContainer = document.getElementById("cards-container");
-        const cardHtml = (title = "", desc = "") => {
-          return `<div class="card card1">
-          <div class="card-body">
-            <h3 class="card-title">${title}</h3>
-            <p class="card-text small">
-              ${desc}
-            </p>
-            <div class="go-corner">
-              <div class="go-arrow"></div>
+        const cardHtml = (card) => {
+          return `
+          <a href="${card.repo_url}" target="_blank">
+            <div class="card card1">
+              <div class="card-body">
+                <h3 class="card-title">${card.title}</h3>
+                <p class="card-text small">
+                  ${card.desc}
+                </p>
+                <p class="card-text small">
+                  Tech stack: ${card.techstacks.join(", ")}
+                </p>
+                <div class="go-corner">
+                  <div class="go-arrow"></div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>`;
+          </a>`;
         };
         // Clear all old cards
+        cardsContainer.innerHTML = "";
         fetch(baseURL + endpoint)
           .then((response) => {
             return response.json();
           })
           .then((data) => {
+            console.log(data)
             if (data.hackathons.length == 0) cardsContainer.innerHTML = "No hackathons found"
             cardsContainer.innerHTML = "";
             data.hackathons.forEach((item) => {
-              cardsContainer.innerHTML += cardHtml(item.title, item.desc);
+              cardsContainer.innerHTML += cardHtml(item);
             });
           });
       }
@@ -171,8 +179,8 @@
     <p></p>
     <div></div>
     <p></p>
-    <div class="container" style="height: 920px" id="cards-container">
-
+    <div class="flex flex-shrink-0 flex flex-wrap" style="height: 920px"
+      id="cards-container">
     </div>
     <div class="container" style="height: 50px">
       <footer id="footerpad" style="width: 992px; height: 162px">
