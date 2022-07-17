@@ -1,5 +1,5 @@
 # Hack-A-Thors 
-  Present A Website to solve all your brainstorming doudts with 'Ideas'
+  Present A Website to solve all your brainstorming doubts with 'Ideas'
   
 ## Problem Statement:-
 
@@ -34,31 +34,25 @@ Every project will have corresponding information:-
 
 ## Challenges I ran into
 
-One interesting result of training the GPT-2 system on our scraped dataset was that some of the generated results were exact copies of taglines from the training set.
-We're still trying to figure out how to prevent this kind of overtraining from occuring while maintaining high quality hackathon predictions.
+We fortunately didnt run into many issues but we had to get aquainted with bootstrap css so we could get responsive ui for our websites .
 
-On the web development side of things, we found it difficult to balance getting functional code out quickly with delivering high quality code. Obviously it would be ideal
-for our code to be beautiful, but we chose to code quickly instead as ugly functional code is better than useless beautiful code. This was largely due to the fact that web
-development requires a lot of boilerplate code which is both time consuming and difficult to debug.
+We also had to scrape data from multiple websites, information which we had to verify the with github data which took a lot of time and effort 
 
-Finally, in the process of generating logos and project names, the unofficial API we were hitting had inconsistent functionality, and many queries would cause errors
-(somehow within 200 OK responses instead of a 4XX response). 
+We also ran into multiple issue when our endpoints from backend api didnt get synced with frontend points so we had to rebuild our build and redeploy it
+
+As we used python the backend had to be highly accurate thus sometimes there were not outputs syncing with or frontend thus we had to reverify our backend api build
 
 ## What we learned
 
 This was our first time using Uipath for webscraping, and we found it to be an essential and natural part of our workflow in order to retrieve winning hackathon ideas from Devpost.
-We used this data to train a machine learning model for idea generation. We've never done text generation using machine learning before, and discovered a program that allows us to 
-train OpenAI's GPT-2 model on our own dataset in a process called "fine-tuning", which takes the original GPT-2 model and alters its weights to optimize for our given input data. This forces
-the output to be in a similar format to our training data, while maintaining all of the NLP features of the original GPT-2 model.
 
-Additionally, to get banner images for our generated ideas, we used the Google images API, which allows us to programmatically search through google images and find relevent content based off
-of keywords in our idea descriptions.
+We also had a firsthand experience with Bootstrap and Tailwind CSS library which has very responsive elements so we are interested to use it for our future projects 
 
-A few of us also didn't have a lot of web development experience, and found this project to be a tremendous learning experience for building full stack web applications.
+We also had our first time experience with building backend api using python and flask, and building a complete database in postgreSQL 
 
 ## Built with
 
-  HTML, CSS, flask , python, bootstrap, javascript
+  HTML, CSS, flask , python, bootstrap, tailwind, javascript ,PostgreSQL, Docker,PHP
 
 ## Deployed with 
   Heroku
