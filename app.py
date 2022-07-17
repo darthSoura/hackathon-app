@@ -11,7 +11,6 @@ ENV = 'dev'
 
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pcnlapgztfkwzf:6b0b6fcf74289f952310cb8e73ed0169db3bcf7615357d19c7c3b737d3115de2@ec2-3-217-14-181.compute-1.amazonaws.com:5432/dala58paf6m535'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app);
 # database and model
@@ -60,12 +59,9 @@ def home():
 @app.route("/months")
 @app.route("/months/")
 def month():
-    # last_mon = datetime.date.today().replace(day=1) - datetime.timedelta(days=1)
     
     return render_template("months.html")
-    # return redirect(url_for('months', yyyymm = last_mon.strftime("%Y%m")))
 
-# dynamic Handling of Month
 @app.route('/api/months/<string:yyyymm>')
 def months(yyyymm):
     
@@ -81,30 +77,22 @@ def months(yyyymm):
     
     return jsonify_hacks_list(hacks_list)
    
-# default Domain redirection  
-# @app.route('/domain-top-ten.html')  
 @app.route('/domains')
 @app.route('/domains/')
 def domain():
     return render_template("domains.html")
-    # return redirect(url_for('domains', domain = "web development"))
 
-# dynamic Handling of domain
 @app.route('/api/domains/<string:domain>')
 def domains(domain): 
     hacks_list = Hacks.query.filter(Hacks.domain.ilike(domain))
     
     return jsonify_hacks_list(hacks_list)
 
-# default Theme redirection
-# @app.route('/api/theme-top-ten.html')  
 @app.route('/themes')
 @app.route('/themes/')
 def theme():
     return render_template("themes.html")
-    # return redirect(url_for('themes', theme = "education"))
 
-# dynamic Handling of Theme
 @app.route('/api/themes/<string:theme>')
 def themes(theme):
     hacks_list = Hacks.query.filter(Hacks.theme.ilike(theme))
