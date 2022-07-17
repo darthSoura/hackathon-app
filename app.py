@@ -57,8 +57,8 @@ def home():
 
 # default Month redirection
 # @app.route('/monthly-top-ten.html')
-@app.route("/months")
-@app.route("/months/")
+@app.route("/api/months")
+@app.route("/api/months/")
 def month():
     # last_mon = datetime.date.today().replace(day=1) - datetime.timedelta(days=1)
     
@@ -79,7 +79,7 @@ def month():
 #     return jsonify_hacks_list(hacks_list)
 
 # dynamic Handling of Month
-@app.route('/months/<string:yyyymm>')
+@app.route('/api/months/<string:yyyymm>')
 def months(yyyymm):
     
     year = int(yyyymm[:-2])
@@ -96,14 +96,14 @@ def months(yyyymm):
    
 # default Domain redirection  
 # @app.route('/domain-top-ten.html')  
-@app.route('/domains')
-@app.route('/domains/')
+@app.route('/api/domains')
+@app.route('/api/domains/')
 def domain():
     return render_template("domains.html")
     # return redirect(url_for('domains', domain = "web development"))
 
 # dynamic Handling of domain
-@app.route('/domains/<string:domain>')
+@app.route('/api/domains/<string:domain>')
 def domains(domain): 
     print(domain)
     hacks_list = Hacks.query.filter(Hacks.domain.ilike(domain))
@@ -112,14 +112,14 @@ def domains(domain):
 
 # default Theme redirection
 # @app.route('/theme-top-ten.html')  
-@app.route('/themes')
-@app.route('/themes/')
+@app.route('/api/themes')
+@app.route('/api/themes/')
 def theme():
     return render_template("themes.html")
     # return redirect(url_for('themes', theme = "education"))
 
 # dynamic Handling of Theme
-@app.route('/themes/<string:theme>')
+@app.route('/api/themes/<string:theme>')
 def themes(theme):
     hacks_list = Hacks.query.filter(Hacks.theme.ilike(theme))
     return jsonify_hacks_list(hacks_list)
