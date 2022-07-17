@@ -1,0 +1,31 @@
+.buttonDark {
+  background-color: black;
+  color: white;
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+  border-radius: 0;
+}
+
+.nav-item {
+  color: rgb(0,0,0);
+  font-size: 17px;
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+  margin-left: 35px;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
+}
+
+.computer {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .computer {
+    display: block;
+    z-index: 1000;
+  }
+}
+
