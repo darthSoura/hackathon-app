@@ -46,37 +46,23 @@ def jsonify_hacks_list(hacks_list):
     hackathons = []
     for hack in hacks_list:
         date = hack.date.strftime("%B") + " " + str(hack.date.year)
-        hackathons.append({'project_name':hack.project_name, 'prob_stat': hack.prob_stat, 'solution': hack.solution, 'techstacks': hack.techstacks, 'potential': hack.potential, 'hack_details': hack.hack_details, 'date': date, 
+        hackathons.append({'title':hack.project_name, 'prob_stat': hack.prob_stat, 'desc': hack.solution, 'techstacks': hack.techstacks, 'potential': hack.potential, 'hack_details': hack.hack_details, 'date': date, 
         'developers':hack.developers, 'repo_url':hack.repo_url, 'domain': hack.domain, 'theme': hack.theme})
     
     return jsonify({'hackathons': hackathons})
+
 @app.route('/index')
 @app.route('/')
 def home():
     return render_template("index.html")
 
-# default Month redirection
-# @app.route('/monthly-top-ten.html')
-@app.route("/api/months")
-@app.route("/api/months/")
+@app.route("/months")
+@app.route("/months/")
 def month():
     # last_mon = datetime.date.today().replace(day=1) - datetime.timedelta(days=1)
     
     return render_template("months.html")
     # return redirect(url_for('months', yyyymm = last_mon.strftime("%Y%m")))
-
-# def mona(yyyymm):
-#     year = int(yyyymm[:-2])
-#     month = int(yyyymm[-2:])
-
-#     num_days = calendar.monthrange(year, month)[1]
-#     start_date = datetime.date(year, month, 1)
-#     end_date = datetime.date(year, month, num_days)
-    
-#     hacks_list = Hacks.query.filter(
-#         and_(Hacks.date >= start_date, Hacks.date <= end_date)).all()
-    
-#     return jsonify_hacks_list(hacks_list)
 
 # dynamic Handling of Month
 @app.route('/api/months/<string:yyyymm>')
@@ -96,8 +82,8 @@ def months(yyyymm):
    
 # default Domain redirection  
 # @app.route('/domain-top-ten.html')  
-@app.route('/api/domains')
-@app.route('/api/domains/')
+@app.route('/domains')
+@app.route('/domains/')
 def domain():
     return render_template("domains.html")
     # return redirect(url_for('domains', domain = "web development"))
@@ -105,15 +91,14 @@ def domain():
 # dynamic Handling of domain
 @app.route('/api/domains/<string:domain>')
 def domains(domain): 
-    print(domain)
     hacks_list = Hacks.query.filter(Hacks.domain.ilike(domain))
     
     return jsonify_hacks_list(hacks_list)
 
 # default Theme redirection
-# @app.route('/theme-top-ten.html')  
-@app.route('/api/themes')
-@app.route('/api/themes/')
+# @app.route('/api/theme-top-ten.html')  
+@app.route('/themes')
+@app.route('/themes/')
 def theme():
     return render_template("themes.html")
     # return redirect(url_for('themes', theme = "education"))

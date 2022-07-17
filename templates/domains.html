@@ -7,7 +7,8 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       />
     <title>Top 10</title>
-    <link rel="stylesheet" href="/static/styles/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/styles/bootstrap/css/bootstrap.min.css"
+      />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap"
@@ -27,7 +28,8 @@
       rel="stylesheet"
       href="/static/styles/css/Footer-with-social-media-icons.css"
       />
-    <link rel="stylesheet" href="/static/styles/css/gradient-navbar-styles.css" />
+    <link rel="stylesheet" href="/static/styles/css/gradient-navbar-styles.css"
+      />
     <link rel="stylesheet" href="/static/styles/css/gradient-navbar.css" />
     <link rel="stylesheet" href="/static/styles/css/Hover-cards.css" />
     <link
@@ -39,6 +41,37 @@
     <link rel="stylesheet" href="/static/styles/css/Social-Icon-Circle.css" />
     <link rel="stylesheet" href="/static/styles/css/styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      const baseURL = "/api/domains/"
+      function loadFromApi(endpoint) {
+        const cardsContainer = document.getElementById("cards-container");
+        const cardHtml = (title = "", desc = "") => {
+          return `<div class="card card1">
+          <div class="card-body">
+            <h3 class="card-title">${title}</h3>
+            <p class="card-text small">
+              ${desc}
+            </p>
+            <div class="go-corner">
+              <div class="go-arrow"></div>
+            </div>
+          </div>
+        </div>`;
+        };
+        // Clear all old cards
+        fetch(baseURL + endpoint)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            if (data.hackathons.length == 0) cardsContainer.innerHTML = "No hackathons found"
+            cardsContainer.innerHTML = "";
+            data.hackathons.forEach((item) => {
+              cardsContainer.innerHTML += cardHtml(item.title, item.desc);
+            });
+          });
+      }
+  </script>
   </head>
 
   <body class="align-self-center mx-auto">
@@ -114,11 +147,13 @@
           <button
             class="btn btn-primary"
             type="button"
-            style="background: rgb(13, 224, 253)">
+            style="background: rgb(13, 224, 253)"
+            onclick="loadFromApi('WebDev')">
             Web</button><button
             class="btn btn-primary"
             type="button"
-            style="background: rgb(13, 210, 253)">
+            style="background: rgb(13, 210, 253)"
+            onclick="loadFromApi('AppDev')">
             App
           </button>
         </div>
@@ -126,7 +161,8 @@
           <button
             class="btn btn-primary"
             type="button"
-            style="background: rgb(13, 167, 253)">
+            style="background: rgb(13, 167, 253)"
+            onclick="loadFromApi('ML')">
             ML
           </button>
         </div>
@@ -135,117 +171,8 @@
     <p></p>
     <div></div>
     <p></p>
-    <div class="container" style="height: 920px">
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card card1">
-        <div class="card-body">
-          <h3 class="card-title">This is option 1</h3>
-          <p class="card-text small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner">
-            <div class="go-arrow"></div>
-          </div>
-        </div>
-      </div>
+    <div class="container" style="height: 920px" id="cards-container">
+
     </div>
     <div class="container" style="height: 50px">
       <footer id="footerpad" style="width: 992px; height: 162px">
