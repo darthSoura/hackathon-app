@@ -49,6 +49,7 @@ def jsonify_hacks_list(hacks_list):
         hackathons.append({'title':hack.project_name, 'prob_stat': hack.prob_stat, 'desc': hack.solution, 'techstacks': hack.techstacks, 'potential': hack.potential, 'hack_details': hack.hack_details, 'date': date, 
         'developers':hack.developers, 'repo_url':hack.repo_url, 'domain': hack.domain, 'theme': hack.theme})
     
+    hackathons = hackathons[:10]
     return jsonify({'hackathons': hackathons})
 
 @app.route('/index')
